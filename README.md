@@ -7,14 +7,15 @@ This project serves as an image gallery for Fivem items, providing a comprehensi
 ## Features
 
 - **Image Gallery**: Browse through a wide variety of images categorized into different groups such as activities, animals, books, chairs, clothing, and more.
-- **Quick Download**: Click on any image to download it immediately to your device.
+- **Quick Download**: Click on any image and you will see a button to download it.
 - **Integrated Search Functionality**: Quickly find what you need using the built-in search feature.
-- **Responsive Design**: The gallery is designed to adapt and look good on all devices, providing a seamless browsing experience.
+- **Inventory snippets**: Click on any image and you will see the code for different inventories.
 
 ## Technologies Used
 
 - [React](https://reactjs.org/)
 - [Tailwind CSS](https://tailwindcss.com/)
+- [Astro](https://astro.build/)
 
 ## Getting Started
 
