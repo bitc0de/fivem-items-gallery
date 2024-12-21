@@ -20,7 +20,7 @@ This project serves as an image gallery for Fivem items, providing a comprehensi
 ## Getting Started
 
 You can open the web from the following link:
-[https://items.bit-code.dev](https://items.bit-code.dev/)
+[https://items.bit-code.dev](https://items.bit-scripts.com)
 
 ## Thanks
 
