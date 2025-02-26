@@ -31,6 +31,9 @@ The images used in this project come from multiple sources and are under differe
 - **[FREE-FiveM-Image-Library](https://github.com/TankieTwitch/FREE-FiveM-Image-Library)** by TankieTwitch: License [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 - **[FREE-RedM-Image-Library](https://github.com/TankieTwitch/FREE-RedM-Image-Library/)** by TankieTwitch: License [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 
-```md
-⚠ **Note:** We are not the original creators of these images. If any image has copyright restrictions not specified in the original repository, please let us know so we can take appropriate action.
-```
+⚠ **Important Note:** 
+- This gallery contains images under different licenses, including **CC BY-NC 4.0** and others.
+- **You are responsible for checking the license of each image before using it.**
+- If you find any image with unclear licensing, please let us know so we can take appropriate action.
+
+For more details about the licenses, please refer to the original repositories.
