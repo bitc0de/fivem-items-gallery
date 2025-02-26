@@ -26,12 +26,12 @@ You can open the web from the following link:
 
 ## Credits
 
-The images used in this repository come from the following project:
+The images used in this project come from multiple sources and are under different licenses:
 
 - **[mk-items](https://github.com/McKleans-Scripts)** by McKleans
 - **[gfa-items](https://github.com/Griefa/gfa-items)** by Griefa
-- **[FREE-FiveM-Image-Library](https://github.com/TankieTwitch/FREE-FiveM-Image-Library)** by TankieTwitch
-- **[FREE-RedM-Image-Library](https://github.com/TankieTwitch/FREE-RedM-Image-Library/)** by TankieTwitch
+- **[FREE-FiveM-Image-Library](https://github.com/TankieTwitch/FREE-FiveM-Image-Library)** by TankieTwitch: License [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
+- **[FREE-RedM-Image-Library](https://github.com/TankieTwitch/FREE-RedM-Image-Library/)** by TankieTwitch: License [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 
 ```md
 ⚠ **Note:** We are not the original creators of these images. If any image has copyright restrictions not specified in the original repository, please let us know so we can take appropriate action.
