@@ -24,6 +24,15 @@ This project serves as an image gallery for Fivem items, providing a comprehensi
 You can open the web from the following link:
 [https://items.bit-scripts.com](https://items.bit-scripts.com)
 
-## Thanks
+## Credits
 
-Thanks to [McKleans](https://github.com/McKleans-Scripts) for providing many of the images from his repository
+The images used in this repository come from the following project:
+
+- **[mk-items](https://github.com/McKleans-Scripts)** by McKleans
+- **[gfa-items](https://github.com/Griefa/gfa-items)** by Griefa
+- **[FREE-FiveM-Image-Library](https://github.com/TankieTwitch/FREE-FiveM-Image-Library)** by TankieTwitch
+- **[FREE-RedM-Image-Library](https://github.com/TankieTwitch/FREE-RedM-Image-Library/)** by TankieTwitch
+
+```md
+⚠ **Note:** We are not the original creators of these images. If any image has copyright restrictions not specified in the original repository, please let us know so we can take appropriate action.
+```
