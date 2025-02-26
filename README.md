@@ -1,7 +1,5 @@
 # Fivem Item Image Gallery 🖼️
 
-visit our store: [https://bit-script.com](http://bit-scripts.com/)
-
 ## Description
 
 This project serves as an image gallery for Fivem items, providing a comprehensive collection of images that can be easily downloaded and utilized in Fivem servers. Featuring a user-friendly interface, you can either search for specific items or browse through various categories to find exactly what you're looking for.
