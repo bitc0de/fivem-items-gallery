@@ -2147,15 +2147,15 @@ function Ma({ selectedInventory: e, selectedItem: a, handleHideModal: m }) {
 				: e === "Quasar" &&
 				  (o = `
         ["${s(a)}"] = {
-          name = '${s(a)}',
-          label = '${n(a)}',
-          weight = 1,
-          type = 'item',
-          image = '${s(a)}.png',
-          unique = false,
-          useable = true,
-          shouldClose = true,
-          description = '${a}'
+          ['name'] = '${s(a)}',
+          ['label'] = '${n(a)}',
+          ['weight'] = 1,
+          ['type'] = 'item',
+          ['image'] = '${s(a)}.png',
+          ['unique'] = false,
+          ['useable'] = true,
+          ['shouldClose'] = true,
+          ['description'] = '${a}'
         }
       `.trim()),
 				r(o);
