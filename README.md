@@ -6,8 +6,6 @@ This project serves as an image gallery for Fivem items, providing a comprehensi
 
 ## Star History
 
-## Star History
-
 <a href="https://www.star-history.com/#bitc0de/fivem-items-gallery&Date">
  <picture>
    <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bitc0de/fivem-items-gallery&type=Date&theme=dark" />
