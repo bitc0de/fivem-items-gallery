@@ -6,7 +6,15 @@ This project serves as an image gallery for Fivem items, providing a comprehensi
 
 ## Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=bitc0de/fivem-items-gallery&type=Date)](https://www.star-history.com/#bitc0de/fivem-items-gallery&Date)
+## Star History
+
+<a href="https://www.star-history.com/#bitc0de/fivem-items-gallery&Date">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=bitc0de/fivem-items-gallery&type=Date&theme=dark" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=bitc0de/fivem-items-gallery&type=Date" />
+   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=bitc0de/fivem-items-gallery&type=Date" />
+ </picture>
+</a>
 
 ## Features
 
