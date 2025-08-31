@@ -4,6 +4,10 @@
 
 This project serves as an image gallery for Fivem items, providing a comprehensive collection of images that can be easily downloaded and utilized in Fivem servers. Featuring a user-friendly interface, you can either search for specific items or browse through various categories to find exactly what you're looking for.
 
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=bitc0de/fivem-items-gallery&type=Date)](https://www.star-history.com/#bitc0de/fivem-items-gallery&Date)
+
 ## Features
 
 - **Image Gallery**: Browse through a wide variety of images categorized into different groups such as activities, animals, books, chairs, clothing, and more.
