@@ -1,0 +1,28 @@
+{
+	"name": "fivem-items-gallery",
+	"version": "2.0.0",
+	"description": "Galería automática de elementos para FiveM basada en estructura de carpetas",
+	"main": "generate-items.js",
+	"scripts": {
+		"generate": "node generate-items.js",
+		"serve": "python -m http.server 8000",
+		"dev": "npm run generate && npm run serve",
+		"build": "npm run generate"
+	},
+	"keywords": [
+		"fivem",
+		"items",
+		"gallery",
+		"images",
+		"roleplay"
+	],
+	"author": "bitc0de",
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/bitc0de/fivem-items-gallery.git"
+	},
+	"engines": {
+		"node": ">=14.0.0"
+	}
+}

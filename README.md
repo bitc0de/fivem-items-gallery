@@ -18,14 +18,9 @@ This project serves as an image gallery for Fivem items, providing a comprehensi
 
 - **Image Gallery**: Browse through a wide variety of images categorized into different groups such as activities, animals, books, chairs, clothing, and more.
 - **Quick Download**: Click on any image and you will see a button to download it.
+- **Multiple Selection**: Use Control + Click to select multiple items.
 - **Integrated Search Functionality**: Quickly find what you need using the built-in search feature.
 - **Inventory snippets**: Click on any image and you will see the code for different inventories.
-
-## Technologies Used
-
-- [React](https://reactjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Astro](https://astro.build/)
 
 ## Getting Started
 
@@ -41,7 +36,8 @@ The images used in this project come from multiple sources and are under differe
 - **[FREE-FiveM-Image-Library](https://github.com/TankieTwitch/FREE-FiveM-Image-Library)** by TankieTwitch: License [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 - **[FREE-RedM-Image-Library](https://github.com/TankieTwitch/FREE-RedM-Image-Library/)** by TankieTwitch: License [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 
-⚠ **Important Note:** 
+⚠ **Important Note:**
+
 - This gallery contains images under different licenses, including **CC BY-NC 4.0** and others.
 - **You are responsible for checking the license of each image before using it.**
 - If you find any image with unclear licensing, please let us know so we can take appropriate action.

@@ -2,180 +2,1501 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content="Astro v5.1.0" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>BIT - FiveM Items Gallery</title>
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<link href="https://fonts.googleapis.com/css2?family=Bowlby+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet" />
 		<script async defer src="https://buttons.github.io/buttons.js"></script>
-		<title>BIT - Fivem Items Gallery</title>
-		<link rel="stylesheet" href="/_astro/index.vob30UZ-.css" />
+
+		<style>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			body {
+				background-color: #081017;
+				color: white;
+				font-family: "Poppins", sans-serif;
+				width: 100vw;
+				min-height: 100vh;
+				overflow-x: hidden;
+				margin: 0;
+				display: flex;
+				transition: all 0.3s ease;
+			}
+
+			.main-container {
+				flex: 1;
+				min-height: 100vh;
+				position: relative;
+				transition: all 0.3s ease;
+			}
+
+			/* Adjust main container when panel is open */
+			body.panel-open .main-container {
+				margin-right: 400px;
+			}
+
+			/* Fondos decorativos */
+			.bg-top {
+				background-image: url("/assets/bgtop.webp");
+				background-repeat: no-repeat;
+				background-size: cover;
+				background-position: center;
+				width: 100%;
+				height: 66.666667%;
+				position: fixed;
+				top: 0;
+				left: 0;
+				z-index: -1;
+				transition: all 0.3s ease;
+			}
+
+			.bg-left {
+				background-image: url("/assets/bg1.webp");
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center;
+				width: 33.333333%;
+				height: 50%;
+				position: fixed;
+				bottom: 0;
+				left: -5rem;
+				z-index: -1;
+				transition: all 0.3s ease;
+			}
+
+			.bg-right {
+				background-image: url("/assets/bg3.webp");
+				background-repeat: no-repeat;
+				background-size: contain;
+				background-position: center;
+				width: 33.333333%;
+				height: 50%;
+				position: fixed;
+				bottom: 0;
+				right: 0;
+				z-index: -1;
+				transition: all 0.3s ease;
+			}
+
+			/* Adjust backgrounds when panel is open */
+			body.panel-open .bg-top {
+				width: calc(100% - 400px);
+			}
+
+			body.panel-open .bg-right {
+				right: 400px;
+			}
+
+			/* Caja de créditos */
+			.credits-box {
+				background-color: black;
+				border-radius: 16px;
+				padding: 15px 0px 15px 15px;
+				width: 231px;
+				height: auto;
+				position: fixed;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: flex-start;
+				top: 30%;
+				right: 3%;
+				z-index: 50;
+				transition: all 0.3s ease;
+			}
+
+			/* Adjust credits box when panel is open */
+			body.panel-open .credits-box {
+				display: none;
+			}
+
+			.credits-box span {
+				color: white;
+				font-weight: bold;
+				margin-bottom: 8px;
+			}
+
+			.credits-box a {
+				color: #60a5fa;
+				text-decoration: none;
+				margin-bottom: 4px;
+			}
+
+			.credits-box a:hover {
+				text-decoration: underline;
+			}
+
+			/* Header */
+			.header {
+				position: relative;
+				z-index: 10;
+				width: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding-top: 2.5rem;
+				gap: 1rem;
+			}
+
+			.logo {
+				width: 10rem;
+				height: auto;
+			}
+
+			.github-buttons {
+				display: flex;
+				gap: 0.5rem;
+			}
+
+			/* Contenedor del inventario */
+			.inventory-container {
+				position: relative;
+				z-index: 10;
+				font-family: "Poppins", sans-serif;
+				color: white;
+				display: flex;
+				justify-content: center;
+				margin: 0 auto;
+				width: 66.666667%;
+				padding-top: 2.5rem;
+				transition: width 0.3s ease;
+			}
+
+			/* Adjust container width when panel is open */
+			body.panel-open .inventory-container {
+				width: 85%;
+			}
+
+			.inventory-content {
+				display: flex;
+				flex-direction: column;
+				justify-content: space-around;
+				width: 100%;
+				gap: 1rem;
+			}
+
+			/* Controles superiores */
+			.controls {
+				display: flex;
+				justify-content: space-between;
+				width: 100%;
+				align-items: center;
+				position: relative;
+			}
+
+			.category-select {
+				border-radius: 9999px;
+				width: 25%;
+				border: 2px solid rgba(100, 116, 139, 0.2);
+				text-align: center;
+				font-weight: 600;
+				background-color: rgba(255, 255, 255, 0.1);
+				color: white;
+				padding: 0.5rem;
+				outline: none;
+			}
+
+			.category-select option {
+				color: white;
+				background-color: #121c28;
+			}
+
+			.total-counter {
+				position: absolute;
+				left: 44%;
+				font-weight: 600;
+			}
+
+			.total-counter .count {
+				color: #4ade80;
+			}
+
+			.search-container {
+				display: flex;
+				width: 10rem;
+				border-radius: 9999px;
+				border: 2px solid rgba(100, 116, 139, 0.2);
+				background-color: rgba(255, 255, 255, 0.2);
+				overflow: hidden;
+				justify-content: center;
+				gap: 0.5rem;
+				align-items: center;
+				padding: 0.5rem;
+			}
+
+			.search-icon {
+				margin-left: -0.25rem;
+			}
+
+			.search-input {
+				width: 75%;
+				text-align: center;
+				font-weight: 600;
+				background-color: transparent;
+				outline: none;
+				border: none;
+				color: white;
+			}
+
+			.search-input::placeholder {
+				color: rgba(255, 255, 255, 0.7);
+			}
+
+			/* Grid de imágenes */
+			.items-grid {
+				background-color: rgba(25, 37, 51, 0.6);
+				width: 100%;
+				height: auto;
+				border-radius: 0.75rem;
+				display: grid;
+				grid-template-columns: repeat(6, 1fr);
+				gap: 1rem;
+				padding: 1rem 2rem;
+				backdrop-filter: blur(12px);
+				min-height: 200px;
+				overflow: hidden; /* Prevent any overflow */
+				box-sizing: border-box;
+			}
+
+			/* Item individual */
+			.item {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding: 0.5rem;
+				border-radius: 0.5rem;
+				background-color: rgba(255, 255, 255, 0.05);
+				transition: all 0.3s ease;
+				cursor: pointer;
+				border: 2px solid transparent;
+				min-width: 0; /* Allow items to shrink */
+				max-width: 100%; /* Prevent overflow */
+				box-sizing: border-box;
+			}
+
+			.item:hover {
+				background-color: rgba(255, 255, 255, 0.1);
+				border-color: rgba(96, 165, 250, 0.5);
+				transform: translateY(-2px);
+			}
+
+			.item img {
+				width: 64px;
+				height: 64px;
+				object-fit: contain;
+				margin-bottom: 0.5rem;
+				max-width: 100%;
+				flex-shrink: 0;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+			}
+
+			.item img.loaded {
+				opacity: 1;
+			}
+
+			.item img.lazy {
+				opacity: 1; /* Make skeleton visible */
+				background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 75%);
+				background-size: 200% 100%;
+				animation: skeleton-loading 1.5s infinite;
+				border-radius: 8px;
+			}
+
+			@keyframes skeleton-loading {
+				0% {
+					background-position: 200% 0;
+				}
+				100% {
+					background-position: -200% 0;
+				}
+			}
+
+			/* Skeleton for item content */
+			.item.skeleton {
+				pointer-events: none;
+			}
+
+			.item.skeleton .item-name {
+				background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 25%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.1) 75%);
+				background-size: 200% 100%;
+				animation: skeleton-loading 1.5s infinite;
+				border-radius: 4px;
+				color: transparent;
+				min-height: 1rem;
+			}
+
+			.item-name {
+				font-size: 0.75rem;
+				text-align: center;
+				font-weight: 500;
+				color: rgba(255, 255, 255, 0.9);
+				text-transform: capitalize;
+				word-wrap: break-word;
+				overflow-wrap: break-word;
+				max-width: 100%;
+				line-height: 1.2;
+			}
+
+			/* Estados de carga y vacío */
+			.category-loader {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 200px;
+				font-size: 1.1rem;
+				color: rgba(255, 255, 255, 0.7);
+				flex-direction: column;
+				gap: 1rem;
+			}
+
+			.spinner {
+				width: 40px;
+				height: 40px;
+				border: 3px solid rgba(255, 255, 255, 0.1);
+				border-top: 3px solid #4ade80;
+				border-radius: 50%;
+				animation: spin 1s linear infinite;
+			}
+
+			@keyframes spin {
+				0% { transform: rotate(0deg); }
+				100% { transform: rotate(360deg); }
+			}
+
+			.no-results {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				min-height: 200px;
+				font-size: 1.1rem;
+				color: rgba(255, 255, 255, 0.7);
+				flex-direction: column;
+				gap: 0.5rem;
+			}
+
+			/* Framework buttons */
+			.framework-buttons {
+				display: flex;
+				gap: 0.5rem;
+				margin-bottom: 1rem;
+				flex-wrap: wrap;
+				justify-content: center;
+			}
+
+			.framework-btn {
+				padding: 0.5rem 1rem;
+				border: 2px solid transparent;
+				border-radius: 9999px;
+				background-color: rgba(255, 255, 255, 0.1);
+				color: white;
+				font-weight: 600;
+				cursor: pointer;
+				transition: all 0.3s ease;
+				font-size: 0.875rem;
+			}
+
+			.framework-btn:hover {
+				background-color: rgba(255, 255, 255, 0.2);
+			}
+
+			.framework-btn.active {
+				border-color: #4ade80;
+				background-color: rgba(74, 222, 128, 0.2);
+			}
+
+			.framework-btn.qbcore.active {
+				border-color: #3b82f6;
+				background-color: rgba(59, 130, 246, 0.2);
+			}
+
+			.framework-btn.esx.active {
+				border-color: #f97316;
+				background-color: rgba(249, 115, 22, 0.2);
+			}
+
+			.framework-btn.ox.active {
+				border-color: #10b981;
+				background-color: rgba(16, 185, 129, 0.2);
+			}
+
+			.framework-btn.quasar.active {
+				border-color: #8b5cf6;
+				background-color: rgba(139, 92, 246, 0.2);
+			}
+
+			/* Code output panel */
+			.code-panel {
+				position: fixed;
+				top: 0;
+				right: 0;
+				width: 0;
+				height: 100vh;
+				background-color: rgba(25, 37, 51, 0.95);
+				backdrop-filter: blur(12px);
+				border-left: 1px solid rgba(255, 255, 255, 0.1);
+				padding: 0;
+				overflow: hidden;
+				z-index: 1000;
+				transition: all 0.3s ease;
+				display: flex;
+				flex-direction: column;
+			}
+
+			.code-panel.show {
+				width: 400px;
+				padding: 1rem;
+				overflow-y: auto;
+			}
+
+			.code-panel h2 {
+				color: white;
+				font-size: 1.125rem;
+				font-weight: 600;
+				margin-bottom: 0.75rem;
+				text-align: center;
+			}
+
+			.code-instructions {
+				color: rgba(255, 255, 255, 0.8);
+				font-size: 0.8rem;
+				margin-bottom: 0.75rem;
+				text-align: left;
+				padding: 0 0.5rem;
+			}
+
+			.code-instructions span {
+				display: block;
+				margin-bottom: 0.375rem;
+			}
+
+			.code-instructions .highlight {
+				background-color: rgba(0, 0, 0, 0.5);
+				padding: 0.125rem 0.25rem;
+				border-radius: 0.25rem;
+				font-family: monospace;
+			}
+
+			.code-output {
+				background-color: black;
+				border-radius: 0.5rem;
+				padding: 1rem;
+				font-family: "Courier New", monospace;
+				color: #4ade80;
+				font-size: 0.75rem;
+				white-space: pre-wrap;
+				flex: 1;
+				overflow-y: auto;
+				position: relative;
+				border: 1px solid rgba(74, 222, 128, 0.3);
+				margin-top: 1rem;
+				min-height: 200px;
+			}
+
+			.copy-btn {
+				position: absolute;
+				top: 0.5rem;
+				right: 0.5rem;
+				background-color: rgba(74, 222, 128, 0.2);
+				border: 1px solid #4ade80;
+				color: #4ade80;
+				padding: 0.25rem 0.5rem;
+				border-radius: 0.25rem;
+				cursor: pointer;
+				font-size: 0.75rem;
+				transition: all 0.3s ease;
+			}
+
+			.copy-btn:hover {
+				background-color: rgba(74, 222, 128, 0.3);
+			}
+
+			/* Close button for code panel */
+			.close-panel-btn {
+				position: absolute;
+				top: 1rem;
+				right: 1rem;
+				background: none;
+				border: none;
+				color: rgba(255, 255, 255, 0.7);
+				font-size: 1.5rem;
+				cursor: pointer;
+				transition: color 0.3s ease;
+				z-index: 1001;
+				width: 2rem;
+				height: 2rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+			}
+
+			.close-panel-btn:hover {
+				color: white;
+				background-color: rgba(255, 255, 255, 0.1);
+				border-radius: 50%;
+			}
+
+			.selected-items {
+				margin-bottom: 1rem;
+				text-align: center;
+				color: rgba(255, 255, 255, 0.8);
+				font-size: 0.875rem;
+			}
+
+			.selected-info {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				gap: 1rem;
+			}
+
+			.selected-items .count {
+				color: #4ade80;
+				font-weight: 600;
+			}
+
+			.download-btn {
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+				background-color: rgba(74, 222, 128, 0.2);
+				border: 1px solid #4ade80;
+				color: #4ade80;
+				padding: 0.5rem 1rem;
+				border-radius: 0.5rem;
+				cursor: pointer;
+				font-size: 0.875rem;
+				font-weight: 600;
+				transition: all 0.3s ease;
+				font-family: inherit;
+			}
+
+			.download-btn:hover {
+				background-color: rgba(74, 222, 128, 0.3);
+				transform: translateY(-1px);
+			}
+
+			.download-btn svg {
+				flex-shrink: 0;
+			}
+
+			/* Item selection */
+			.item.selected {
+				border-color: #4ade80;
+				background-color: rgba(74, 222, 128, 0.2);
+			}
+
+			.item.selected::after {
+				content: "✓";
+				position: absolute;
+				top: 0.25rem;
+				right: 0.25rem;
+				background-color: #4ade80;
+				color: black;
+				border-radius: 50%;
+				width: 1.25rem;
+				height: 1.25rem;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				font-size: 0.75rem;
+				font-weight: bold;
+			}
+
+			.item {
+				position: relative;
+			}
+
+			/* Responsive */
+			@media (min-width: 1600px) {
+				/* Mantener 6 columnas siempre */
+			}
+
+			@media (max-width: 1599px) and (min-width: 1280px) {
+				.items-grid {
+					grid-template-columns: repeat(5, 1fr);
+				}
+				
+				/* Mantener 5 columnas cuando el panel esté abierto */
+				
+				.code-panel.show {
+					width: 350px;
+				}
+				
+				body.panel-open .main-container {
+					margin-right: 350px;
+				}
+				
+				body.panel-open .bg-top {
+					width: calc(100% - 350px);
+				}
+				
+				body.panel-open .bg-right {
+					right: 350px;
+				}
+				
+				body.panel-open .inventory-container {
+					width: 95%;
+				}
+			}
+
+			@media (max-width: 1279px) and (min-width: 1024px) {
+				.items-grid {
+					grid-template-columns: repeat(4, 1fr);
+				}
+				
+				/* Mantener 4 columnas cuando el panel esté abierto */
+				
+				.inventory-container {
+					width: 80%;
+				}
+				
+				body.panel-open .inventory-container {
+					width: 95%;
+				}
+				
+				.code-panel.show {
+					width: 300px;
+				}
+				
+				body.panel-open .main-container {
+					margin-right: 300px;
+				}
+				
+				body.panel-open .bg-top {
+					width: calc(100% - 300px);
+				}
+				
+				body.panel-open .bg-right {
+					right: 300px;
+				}
+				
+				.credits-box {
+					width: 200px;
+					right: 1%;
+					font-size: 0.875rem;
+				}
+			}
+
+			@media (max-width: 768px) {
+				.items-grid {
+					grid-template-columns: repeat(3, 1fr);
+				}
+				.controls {
+					flex-direction: column;
+					gap: 1rem;
+				}
+				.total-counter {
+					position: static;
+					left: auto;
+				}
+				.framework-buttons {
+					justify-content: center;
+				}
+				
+				/* On mobile, panel takes full width and slides from bottom */
+				.code-panel {
+					position: fixed;
+					top: auto;
+					bottom: 0;
+					right: 0;
+					left: 0;
+					width: 100%;
+					height: 0;
+					transform: translateY(100%);
+					transition: all 0.3s ease;
+				}
+				
+				.code-panel.show {
+					height: 60vh;
+					padding: 1rem;
+					overflow-y: auto;
+					width: 100%;
+					transform: translateY(0);
+				}
+				
+				body.panel-open .main-container {
+					margin-right: 0;
+					margin-bottom: 60vh;
+				}
+				
+				body.panel-open .bg-top,
+				body.panel-open .bg-right {
+					width: 100%;
+					right: 0;
+				}
+				
+				.credits-box {
+					display: none;
+				}
+				
+				.inventory-container {
+					width: 95%;
+				}
+			}
+
+			@media (max-width: 640px) {
+				.items-grid {
+					grid-template-columns: repeat(2, 1fr);
+					padding: 1rem;
+				}
+				.framework-buttons {
+					flex-direction: column;
+					align-items: center;
+				}
+				
+				.controls {
+					align-items: stretch;
+				}
+				
+				.category-select {
+					width: 100%;
+				}
+				
+				.search-container {
+					width: 100%;
+				}
+				
+				.header {
+					padding-top: 1.5rem;
+				}
+				
+				.logo {
+					width: 8rem;
+				}
+
+				.selected-info {
+					flex-direction: column;
+					gap: 0.5rem;
+				}
+
+				.download-btn {
+					padding: 0.375rem 0.75rem;
+					font-size: 0.75rem;
+				}
+			}
+
+			@media (max-width: 480px) {
+				.items-grid {
+					grid-template-columns: repeat(2, 1fr);
+					gap: 0.5rem;
+					padding: 0.5rem;
+				}
+				
+				.item img {
+					width: 48px;
+					height: 48px;
+				}
+				
+				.item-name {
+					font-size: 0.6rem;
+				}
+				
+				.framework-btn {
+					padding: 0.375rem 0.75rem;
+					font-size: 0.75rem;
+				}
+				
+				.code-panel.show {
+					height: 70vh;
+					padding: 0.75rem;
+				}
+				
+				.code-output {
+					font-size: 0.7rem;
+				}
+			}
+		</style>
 	</head>
-	<body class="bg-[#081017] text-white w-screen h-screen overflow-x-hidden">
-		<main class="w-full h-full relative">
-			<div class="bg-bg-top bg-no-repeat bg-cover bg-center w-full h-2/3 absolute top-0 left-0 z-0"></div>
-			<div class="bg-bg1 bg-no-repeat bg-contain bg-center w-1/3 h-1/2 absolute bottom-0 -left-20 z-0"></div>
-			<div class="bg-bg3 bg-no-repeat bg-contain bg-center w-1/3 h-1/2 absolute bottom-0 right-0 z-0"></div>
-			<div style="background-color: black; border-radius: 16px; padding: 15px 0px 15px 15px; width: 231px; height: auto; position: absolute; display: flex; flex-direction: column; justify-content: center; align-items: left; top: 30%; right: 3%; z-index: 0">
-				<span style="color: white; font-weight: bold">Images credits:</span>
-				<a href="https://github.com/McKleans-Scripts" target="_blank" style="color: #60a5fa; text-decoration: none">McKleans Repo</a>
-				<a href="https://github.com/Griefa/gfa-items" target="_blank" style="color: #60a5fa; text-decoration: none">Griefa Repo</a>
-				<a href="https://github.com/TankieTwitch/FREE-FiveM-Image-Library" target="_blank" style="color: #60a5fa; text-decoration: none">TankieTwitch Fivem Repo</a>
-				<a href="https://github.com/TankieTwitch/FREE-RedM-Image-Library/" target="_blank" style="color: #60a5fa; text-decoration: none">TankieTwitch RedM Repo</a>
+	<body>
+		<main class="main-container">
+			<!-- Fondos decorativos -->
+			<div class="bg-top"></div>
+			<div class="bg-left"></div>
+			<div class="bg-right"></div>
+
+			<!-- Caja de créditos -->
+			<div class="credits-box">
+				<a href="https://bit-scripts.com" target="_blank">
+						<img src="./banner.jpg" alt="BIT Banner" style="width: 100%; margin-bottom: 10px; padding-right:10px;" />
+				</a>
+				<span>Images credits:</span>
+				<a href="https://github.com/McKleans-Scripts" target="_blank">McKleans Repo</a>
+				<a href="https://github.com/Griefa/gfa-items" target="_blank">Griefa Repo</a>
+				<a href="https://github.com/TankieTwitch/FREE-FiveM-Image-Library" target="_blank">TankieTwitch Fivem Repo</a>
+				<a href="https://github.com/TankieTwitch/FREE-RedM-Image-Library/" target="_blank">TankieTwitch RedM Repo</a>
 			</div>
 
-			<section class="relative z-10 w-screen h-auto flex flex-col items-center pt-10 space-y-4 text-white">
-				<a href="https://items.bit-scripts.com/" target="_blank" class="text-2xl font-bold"> <img src="/assets/logo.png" alt="BIT logo" class="w-40 h-auto" /> </a>
-				<div class="flex gap-2"><a class="github-button" href="https://github.com/bitc0de" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="large" aria-label="Follow @bitc0de on GitHub">Follow @bitc0de</a> <a class="github-button" href="https://github.com/bitc0de/fivem-items-gallery" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star bitc0de/fivem-items-gallery on GitHub">Star</a></div>
+			<!-- Header -->
+			<section class="header">
+				<a href="https://bit-scripts.com/" target="_blank">
+					<img src="/assets/logo.png" alt="BIT logo" class="logo" />
+				</a>
+				<div class="github-buttons">
+					<a class="github-button" href="https://github.com/bitc0de" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-size="large" aria-label="Follow @bitc0de on GitHub">Follow @bitc0de</a>
+					<a class="github-button" href="https://github.com/bitc0de/fivem-items-gallery" data-color-scheme="no-preference: dark; light: dark; dark: dark;" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star bitc0de/fivem-items-gallery on GitHub">Star</a>
+				</div>
 			</section>
 
-			<style>
-				astro-island,
-				astro-slot,
-				astro-static-slot {
-					display: contents;
-				}
-			</style>
-			<script>
-				(() => {
-					var e = async (t) => {
-						await (
-							await t()
-						)();
-					};
-					(self.Astro || (self.Astro = {})).load = e;
-					window.dispatchEvent(new Event("astro:load"));
-				})();
-				(() => {
-					var A = Object.defineProperty;
-					var g = (i, o, a) => (o in i ? A(i, o, { enumerable: !0, configurable: !0, writable: !0, value: a }) : (i[o] = a));
-					var d = (i, o, a) => g(i, typeof o != "symbol" ? o + "" : o, a);
-					{
-						let i = { 0: (t) => m(t), 1: (t) => a(t), 2: (t) => new RegExp(t), 3: (t) => new Date(t), 4: (t) => new Map(a(t)), 5: (t) => new Set(a(t)), 6: (t) => BigInt(t), 7: (t) => new URL(t), 8: (t) => new Uint8Array(t), 9: (t) => new Uint16Array(t), 10: (t) => new Uint32Array(t), 11: (t) => (1 / 0) * t },
-							o = (t) => {
-								let [l, e] = t;
-								return l in i ? i[l](e) : void 0;
-							},
-							a = (t) => t.map(o),
-							m = (t) => (typeof t != "object" || t === null ? t : Object.fromEntries(Object.entries(t).map(([l, e]) => [l, o(e)])));
-						class y extends HTMLElement {
-							constructor() {
-								super(...arguments);
-								d(this, "Component");
-								d(this, "hydrator");
-								d(this, "hydrate", async () => {
-									var b;
-									if (!this.hydrator || !this.isConnected) return;
-									let e = (b = this.parentElement) == null ? void 0 : b.closest("astro-island[ssr]");
-									if (e) {
-										e.addEventListener("astro:hydrate", this.hydrate, { once: !0 });
-										return;
-									}
-									let c = this.querySelectorAll("astro-slot"),
-										n = {},
-										h = this.querySelectorAll("template[data-astro-template]");
-									for (let r of h) {
-										let s = r.closest(this.tagName);
-										s != null && s.isSameNode(this) && ((n[r.getAttribute("data-astro-template") || "default"] = r.innerHTML), r.remove());
-									}
-									for (let r of c) {
-										let s = r.closest(this.tagName);
-										s != null && s.isSameNode(this) && (n[r.getAttribute("name") || "default"] = r.innerHTML);
-									}
-									let p;
-									try {
-										p = this.hasAttribute("props") ? m(JSON.parse(this.getAttribute("props"))) : {};
-									} catch (r) {
-										let s = this.getAttribute("component-url") || "<unknown>",
-											v = this.getAttribute("component-export");
-										throw (v && (s += ` (export ${v})`), console.error(`[hydrate] Error parsing props for component ${s}`, this.getAttribute("props"), r), r);
-									}
-									let u;
-									await this.hydrator(this)(this.Component, p, n, { client: this.getAttribute("client") }), this.removeAttribute("ssr"), this.dispatchEvent(new CustomEvent("astro:hydrate"));
-								});
-								d(this, "unmount", () => {
-									this.isConnected || this.dispatchEvent(new CustomEvent("astro:unmount"));
-								});
-							}
-							disconnectedCallback() {
-								document.removeEventListener("astro:after-swap", this.unmount), document.addEventListener("astro:after-swap", this.unmount, { once: !0 });
-							}
-							connectedCallback() {
-								if (!this.hasAttribute("await-children") || document.readyState === "interactive" || document.readyState === "complete") this.childrenConnectedCallback();
-								else {
-									let e = () => {
-											document.removeEventListener("DOMContentLoaded", e), c.disconnect(), this.childrenConnectedCallback();
-										},
-										c = new MutationObserver(() => {
-											var n;
-											((n = this.lastChild) == null ? void 0 : n.nodeType) === Node.COMMENT_NODE && this.lastChild.nodeValue === "astro:end" && (this.lastChild.remove(), e());
-										});
-									c.observe(this, { childList: !0 }), document.addEventListener("DOMContentLoaded", e);
-								}
-							}
-							async childrenConnectedCallback() {
-								let e = this.getAttribute("before-hydration-url");
-								e && (await import(e)), this.start();
-							}
-							async start() {
-								let e = JSON.parse(this.getAttribute("opts")),
-									c = this.getAttribute("client");
-								if (Astro[c] === void 0) {
-									window.addEventListener(`astro:${c}`, () => this.start(), { once: !0 });
-									return;
-								}
-								try {
-									await Astro[c](
-										async () => {
-											let n = this.getAttribute("renderer-url"),
-												[h, { default: p }] = await Promise.all([import(this.getAttribute("component-url")), n ? import(n) : () => () => {}]),
-												u = this.getAttribute("component-export") || "default";
-											if (!u.includes(".")) this.Component = h[u];
-											else {
-												this.Component = h;
-												for (let f of u.split(".")) this.Component = this.Component[f];
+			<!-- Inventario -->
+			<section class="inventory-container">
+				<div class="inventory-content">
+					<!-- Framework Selection -->
+					<div class="framework-buttons">
+						<button class="framework-btn qbcore active" data-framework="QBCore">QBCore</button>
+						<button class="framework-btn esx" data-framework="ESX">ESX</button>
+						<button class="framework-btn ox" data-framework="OX">OX Inventory</button>
+						<button class="framework-btn quasar" data-framework="Quasar">Quasar</button>
+					</div>
+
+					<div class="controls">
+						<select class="category-select" id="categorySelect">
+							<option value="All">All Categories</option>
+						</select>
+						<span class="total-counter">Total Images: <span class="count" id="totalCount">0</span></span>
+						<div class="search-container">
+							<div class="search-icon">
+								<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+									<path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
+									<path d="M21 21l-6 -6"></path>
+								</svg>
+							</div>
+							<input type="text" class="search-input" placeholder="Search" id="searchInput" />
+						</div>
+					</div>
+
+					<!-- Selected Items Counter -->
+					<div class="selected-items" id="selectedCounter" style="display: none">
+						<div class="selected-info">
+							<span><span class="count">Control</span> + <span class="count">Click</span> to select multiple items</span>
+							<span>Selected items: <span class="count" id="selectedCount">0</span></span>
+							<button class="download-btn" id="downloadBtn">
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+									<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+									<polyline points="7,10 12,15 17,10"></polyline>
+									<line x1="12" y1="15" x2="12" y2="3"></line>
+								</svg>
+								Download Images
+							</button>
+						</div>
+					</div>
+
+					<div class="items-grid" id="itemsGrid">
+						<div class="category-loader">
+							<div class="spinner"></div>
+							<span>Loading images...</span>
+						</div>
+					</div>
+
+					<!-- Code Output Panel -->
+					<div class="code-panel" id="codePanel">
+						<button class="close-panel-btn" id="closePanelBtn">×</button>
+						<h2 id="frameworkTitle">How to add in QBCore</h2>
+						<div class="code-instructions" id="codeInstructions">
+							<span>·Navigate to the qb-core resource directory and find the <span class="highlight">qb-core/shared/items.lua</span></span>
+							<span>·Copy and paste the generated code below into the <span class="highlight">items.lua</span> file.</span>
+							<span>·Save the file and restart the server.</span>
+						</div>
+						<div class="code-output" id="codeOutput">
+							<button class="copy-btn" id="copyCodeBtn">Copy Code</button>
+							<div id="generatedCode">-- Select some items to generate the code</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Script de datos generados automáticamente -->
+		<script src="items-data.js"></script>
+
+		<!-- Script principal -->
+		<script>
+			class ItemsGallery {
+				constructor() {
+					this.currentCategory = "All";
+					this.currentSearch = "";
+					this.currentFramework = "QBCore";
+					this.allItems = [];
+					this.filteredItems = [];
+					this.selectedItems = new Set();
+					this.imageObserver = null;
+					this.loadedImages = new Map(); // Cache for loaded images
+					this.isFiltering = false;
+					this.currentPage = 1;
+					this.itemsPerPage = 60;
+					this.isLoadingMore = false;
+					this.infiniteScrollHandler = this.handleInfiniteScroll.bind(this);
+
+					this.initializeElements();
+					this.itemsGrid = document.getElementById("itemsGrid");
+					this.totalCount = document.getElementById("totalCount");
+					this.selectedCounter = document.getElementById("selectedCounter");
+					this.selectedCount = document.getElementById("selectedCount");
+					this.codePanel = document.getElementById("codePanel");
+					this.generatedCode = document.getElementById("generatedCode");
+					this.copyCodeBtn = document.getElementById("copyCodeBtn");
+					this.downloadBtn = document.getElementById("downloadBtn");
+					this.closePanelBtn = document.getElementById("closePanelBtn");
+					this.frameworkTitle = document.getElementById("frameworkTitle");
+					this.codeInstructions = document.getElementById("codeInstructions");
+
+					if ('IntersectionObserver' in window) {
+						this.imageObserver = new IntersectionObserver((entries) => {
+							entries.forEach(entry => {
+								if (entry.isIntersecting) {
+									const img = entry.target;
+									const src = img.dataset.src;
+									if (src) {
+										const newImg = new Image();
+										newImg.onload = () => {
+											img.src = src;
+											img.classList.remove('lazy');
+											setTimeout(() => {
+												img.classList.add('loaded');
+												const item = img.closest('.item');
+												if (item) {
+													item.classList.remove('skeleton');
+												}
+											}, 50);
+										};
+										newImg.onerror = () => {
+											img.style.display = 'none';
+											const item = img.closest('.item');
+											if (item) {
+												item.classList.remove('skeleton');
 											}
-											return (this.hydrator = p), this.hydrate;
-										},
-										e,
-										this
-									);
-								} catch (n) {
-									console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`, n);
+										};
+										newImg.src = src;
+										this.imageObserver.unobserve(img);
+									}
+								}
+							});
+						}, {
+							rootMargin: '50px'
+						});
+					}
+
+					this.loadItems();
+					this.bindEvents();
+				}
+
+				initializeElements() {
+					this.categorySelect = document.getElementById("categorySelect");
+					this.searchInput = document.getElementById("searchInput");
+				}
+
+				renderItems(reset = true) {
+					if (reset) {
+						this.currentPage = 1;
+						this.itemsGrid.innerHTML = "";
+					}
+					if (this.filteredItems.length === 0) {
+						this.itemsGrid.innerHTML = `
+						<div class="no-results">
+							<span>No images found</span>
+							<span>Try another search or category</span>
+						</div>
+					`;
+						return;
+					}
+					const start = 0;
+					const end = this.itemsPerPage * this.currentPage;
+					const itemsToShow = this.filteredItems.slice(0, end);
+					const itemsHTML = itemsToShow
+						.map((item) => {
+							const isSelected = this.selectedItems.has(item.name);
+							const isImageCached = this.loadedImages.has(item.url);
+							const skeletonClass = isImageCached ? '' : 'skeleton';
+							const imageClass = isImageCached ? 'loaded' : 'lazy';
+							const imageSrc = isImageCached ? item.url : "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64'%3E%3C/svg%3E";
+							return `
+						<div class="item ${skeletonClass} ${isSelected ? "selected" : ""}" data-name="${item.name}" title="Click to select, Ctrl+Click for multiple selection">
+							<img class="${imageClass}" ${isImageCached ? 'src' : 'data-src'}="${item.url}" ${isImageCached ? '' : 'src="' + imageSrc + '"'} alt="${item.name}" onerror="this.style.display='none'; this.nextElementSibling.style.marginTop='1rem';">
+							<span class="item-name">${item.name}</span>
+						</div>
+					`;
+						})
+						.join("");
+					this.itemsGrid.innerHTML = itemsHTML;
+					// Loader at the bottom if more items
+					if (end < this.filteredItems.length) {
+						this.itemsGrid.innerHTML += `<div id="infinite-loader" class="category-loader"><div class="spinner"></div><span>Loading more...</span></div>`;
+					}
+					this.setupLazyLoading();
+					// Attach scroll event
+					this.attachInfiniteScroll();
+				}
+
+				attachInfiniteScroll() {
+					window.removeEventListener('scroll', this.infiniteScrollHandler);
+					if (this.filteredItems.length > this.itemsPerPage) {
+						window.addEventListener('scroll', this.infiniteScrollHandler);
+					}
+				}
+
+				handleInfiniteScroll() {
+					if (this.isLoadingMore) return;
+					const loader = document.getElementById('infinite-loader');
+					if (!loader) return;
+					const rect = loader.getBoundingClientRect();
+					if (rect.top < window.innerHeight + 100) {
+						this.isLoadingMore = true;
+						setTimeout(() => {
+							this.currentPage++;
+							this.renderItems(false);
+							this.isLoadingMore = false;
+						}, 400);
+					}
+				}
+
+				loadItems() {
+					try {
+						// Load all categories in the select
+						const categories = getCategories();
+						categories.forEach((category) => {
+							const option = document.createElement("option");
+							option.value = category;
+							option.textContent = this.formatCategoryName(category);
+							this.categorySelect.appendChild(option);
+						});
+
+						// Load all items
+						this.allItems = getAllItems();
+						this.filteredItems = [...this.allItems];
+
+						this.updateDisplay();
+					} catch (error) {
+						console.error("Error loading items:", error);
+						this.showError("Error loading images. Make sure the items-data.js file exists.");
+					}
+				}
+
+				bindEvents() {
+					// Framework selection
+					document.querySelectorAll(".framework-btn").forEach((btn) => {
+						btn.addEventListener("click", (e) => {
+							document.querySelectorAll(".framework-btn").forEach((b) => b.classList.remove("active"));
+							e.target.classList.add("active");
+							this.currentFramework = e.target.dataset.framework;
+							this.updateFrameworkInfo();
+							this.generateCode();
+						});
+					});
+
+					this.categorySelect.addEventListener("change", (e) => {
+						this.currentCategory = e.target.value;
+						this.filterItems();
+					});
+
+					this.searchInput.addEventListener("input", (e) => {
+						this.currentSearch = e.target.value;
+						this.filterItems();
+					});
+
+					// Item selection (multi-select with Ctrl/Cmd)
+					this.itemsGrid.addEventListener("click", (e) => {
+						const item = e.target.closest(".item");
+						if (item) {
+							const itemName = item.dataset.name;
+
+							// Multi-select functionality
+							if (e.ctrlKey || e.metaKey) {
+								if (this.selectedItems.has(itemName)) {
+									this.selectedItems.delete(itemName);
+									item.classList.remove("selected");
+								} else {
+									this.selectedItems.add(itemName);
+									item.classList.add("selected");
+								}
+							} else {
+								// Single select - just toggle selection
+								if (this.selectedItems.has(itemName)) {
+									this.selectedItems.delete(itemName);
+									item.classList.remove("selected");
+								} else {
+									// Clear all selections and select this one
+									this.selectedItems.clear();
+									document.querySelectorAll(".item.selected").forEach((i) => i.classList.remove("selected"));
+									this.selectedItems.add(itemName);
+									item.classList.add("selected");
 								}
 							}
-							attributeChangedCallback() {
-								this.hydrate();
+
+							this.updateSelectionDisplay();
+							this.generateCode();
+						}
+					});
+
+					// Copy code button
+					this.copyCodeBtn.addEventListener("click", () => {
+						const code = this.generatedCode.textContent;
+						this.copyToClipboard(code);
+						this.showToast("Code copied to clipboard");
+					});
+
+					// Download button
+					this.downloadBtn.addEventListener("click", () => {
+						this.downloadSelectedImages();
+					});
+
+					// Close panel button
+					this.closePanelBtn.addEventListener("click", () => {
+						this.codePanel.classList.remove("show");
+						document.body.classList.remove("panel-open");
+						this.selectedItems.clear();
+						document.querySelectorAll(".item.selected").forEach((i) => i.classList.remove("selected"));
+						this.updateSelectionDisplay();
+					});
+				}
+
+				filterItems() {
+				// Show loader
+				this.isFiltering = true;
+				this.itemsGrid.innerHTML = `
+					<div class="category-loader">
+						<div class="spinner"></div>
+						<span>Loading category...</span>
+					</div>
+				`;
+
+				// Use a small delay to show the loader, then filter
+				setTimeout(() => {
+					let items = [...this.allItems];
+
+					// Filtrar por categoría
+					if (this.currentCategory !== "All") {
+						items = getItemsByCategory(this.currentCategory);
+					}
+
+					// Filtrar por búsqueda
+					if (this.currentSearch.trim()) {
+						const searchQuery = this.currentSearch.toLowerCase();
+						items = items.filter((item) => item.name.toLowerCase().includes(searchQuery));
+					}
+
+					this.filteredItems = items;
+					this.isFiltering = false;
+					this.renderItems(true);
+				}, 100);
+				}
+
+				updateDisplay() {
+					this.updateCounter();
+					this.renderItems();
+				}
+
+				updateCounter() {
+					this.totalCount.textContent = this.filteredItems.length;
+				}
+
+				updateSelectionDisplay() {
+					const count = this.selectedItems.size;
+					this.selectedCount.textContent = count;
+
+					if (count > 0) {
+						this.selectedCounter.style.display = "block";
+						this.codePanel.classList.add("show");
+						document.body.classList.add("panel-open");
+					} else {
+						this.selectedCounter.style.display = "none";
+						this.codePanel.classList.remove("show");
+						document.body.classList.remove("panel-open");
+					}
+				}
+
+
+
+				setupLazyLoading() {
+					if (this.imageObserver) {
+						// Observe all lazy images
+						const lazyImages = this.itemsGrid.querySelectorAll('img.lazy');
+						lazyImages.forEach(img => {
+							this.imageObserver.observe(img);
+						});
+					} else {
+						// Fallback for browsers without IntersectionObserver
+						const lazyImages = this.itemsGrid.querySelectorAll('img.lazy');
+						lazyImages.forEach(img => {
+							const src = img.dataset.src;
+							if (src) {
+								// Create a new image to preload
+								const newImg = new Image();
+								newImg.onload = () => {
+									img.src = src;
+									img.classList.remove('lazy');
+									
+									// Use a small delay to ensure smooth transition
+									setTimeout(() => {
+										img.classList.add('loaded');
+										
+										// Remove skeleton effect from parent item
+										const item = img.closest('.item');
+										if (item) {
+											item.classList.remove('skeleton');
+										}
+									}, 50);
+								};
+								newImg.onerror = () => {
+									img.style.display = 'none';
+									const item = img.closest('.item');
+									if (item) {
+										item.classList.remove('skeleton');
+									}
+								};
+								newImg.src = src;
+							}
+						});
+					}
+				}
+
+				updateFrameworkInfo() {
+					const frameworkInfo = {
+						QBCore: {
+							title: "How to add in QBCore",
+							instructions: ["·Navigate to the qb-core resource directory and find the <span class='highlight'>qb-core/shared/items.lua</span>", "·Copy and paste the generated code below into the <span class='highlight'>items.lua</span> file.", "·Save the file and restart the server."],
+						},
+						ESX: {
+							title: "How to add in ESX",
+							instructions: ["·Connect to your server's database management tool (e.g., phpMyAdmin, HeidiSQL...).", "·Execute the following query in the database.", "·Save the changes in the database and restart the server."],
+						},
+						OX: {
+							title: "How to add in OX Inventory",
+							instructions: ["·Navigate to the ox_inventory resource directory and find the <span class='highlight'>ox_inventory/data/items.lua</span>", "·Copy and paste the generated code below into the <span class='highlight'>items.lua</span> file.", "·Save the file and restart the resource."],
+						},
+						Quasar: {
+							title: "How to add in Quasar",
+							instructions: ["·Navigate to the qs_inventory resource directory and find the <span class='highlight'>qs_inventory/shared/items.lua</span>", "·Copy and paste the generated code below into the <span class='highlight'>items.lua</span> file.", "·Save the file and restart the resource."],
+						},
+					};
+
+					const info = frameworkInfo[this.currentFramework];
+					this.frameworkTitle.textContent = info.title;
+					this.codeInstructions.innerHTML = info.instructions.map((inst) => `<span>${inst}</span>`).join("");
+				}
+
+				generateCode() {
+					if (this.selectedItems.size === 0) {
+						this.generatedCode.textContent = "-- Select some items to generate the code";
+						return;
+					}
+
+					const selectedItemsArray = Array.from(this.selectedItems);
+					let code = "";
+
+					switch (this.currentFramework) {
+						case "QBCore":
+							code = this.generateQBCoreCode(selectedItemsArray);
+							break;
+						case "ESX":
+							code = this.generateESXCode(selectedItemsArray);
+							break;
+						case "OX":
+							code = this.generateOXCode(selectedItemsArray);
+							break;
+						case "Quasar":
+							code = this.generateQuasarCode(selectedItemsArray);
+							break;
+					}
+
+					this.generatedCode.textContent = code;
+				}
+
+				generateQBCoreCode(items) {
+					let code = "-- QBCore Items\n";
+					items.forEach((itemName) => {
+						const safeName = itemName.toLowerCase().replace(/[^a-z0-9]/g, "_");
+						code += `['${safeName}'] = {\n`;
+						code += `    ['name'] = '${safeName}',\n`;
+						code += `    ['label'] = '${itemName}',\n`;
+						code += `    ['weight'] = 1,\n`;
+						code += `    ['type'] = 'item',\n`;
+						code += `    ['image'] = '${safeName}.png',\n`;
+						code += `    ['unique'] = false,\n`;
+						code += `    ['useable'] = true,\n`;
+						code += `    ['shouldClose'] = true,\n`;
+						code += `    ['combinable'] = nil,\n`;
+						code += `    ['description'] = '${itemName}'\n`;
+						code += `},\n\n`;
+					});
+					return code;
+				}
+
+				generateESXCode(items) {
+					let code = "-- ESX Items (SQL Query)\n";
+					items.forEach((itemName) => {
+						const safeName = itemName.toLowerCase().replace(/[^a-z0-9]/g, "_");
+						code += `INSERT INTO items (name, label, weight, rare, can_remove) VALUES ('${safeName}', '${itemName}', 1, 0, 1);\n`;
+					});
+					return code;
+				}
+
+				generateOXCode(items) {
+					let code = "-- OX Inventory Items\n";
+					items.forEach((itemName) => {
+						const safeName = itemName.toLowerCase().replace(/[^a-z0-9]/g, "_");
+						code += `['${safeName}'] = {\n`;
+						code += `    label = '${itemName}',\n`;
+						code += `    weight = 1,\n`;
+						code += `    stack = true,\n`;
+						code += `    close = true,\n`;
+						code += `    description = '${itemName}'\n`;
+						code += `},\n\n`;
+					});
+					return code;
+				}
+
+				generateQuasarCode(items) {
+					let code = "-- Quasar Inventory Items\n";
+					items.forEach((itemName) => {
+						const safeName = itemName.toLowerCase().replace(/[^a-z0-9]/g, "_");
+						code += `['${safeName}'] = {\n`;
+						code += `    ['name'] = '${safeName}',\n`;
+						code += `    ['label'] = '${itemName}',\n`;
+						code += `    ['weight'] = 1,\n`;
+						code += `    ['type'] = 'item',\n`;
+						code += `    ['image'] = '${safeName}.png',\n`;
+						code += `    ['unique'] = false,\n`;
+						code += `    ['useable'] = true,\n`;
+						code += `    ['shouldClose'] = true,\n`;
+						code += `    ['description'] = '${itemName}'\n`;
+						code += `},\n\n`;
+					});
+					return code;
+				}
+
+				async downloadSelectedImages() {
+					if (this.selectedItems.size === 0) {
+						this.showToast("No images selected");
+						return;
+					}
+
+					this.showToast("Preparing download...");
+
+					try {
+						// If only one image, download directly
+						if (this.selectedItems.size === 1) {
+							const itemName = Array.from(this.selectedItems)[0];
+							const item = this.allItems.find(item => item.name === itemName);
+							if (item) {
+								await this.downloadSingleImage(item.url, itemName);
+								this.showToast("Image downloaded successfully");
+							}
+							return;
+						}
+
+						// For multiple images, create a zip file (requires JSZip library)
+						// Since we don't have JSZip, we'll download images one by one
+						let downloadCount = 0;
+						for (const itemName of this.selectedItems) {
+							const item = this.allItems.find(item => item.name === itemName);
+							if (item) {
+								await this.downloadSingleImage(item.url, itemName);
+								downloadCount++;
+								await new Promise(resolve => setTimeout(resolve, 500)); // Small delay between downloads
 							}
 						}
-						d(y, "observedAttributes", ["props"]), customElements.get("astro-island") || customElements.define("astro-island", y);
+						this.showToast(`${downloadCount} images downloaded successfully`);
+					} catch (error) {
+						console.error("Download error:", error);
+						this.showToast("Error downloading images");
 					}
-				})();
-			</script>
-			<astro-island uid="21ldJ9" prefix="r0" component-url="/_astro/Inventory.clKKDvXS.js" component-export="default" renderer-url="/_astro/client.BleWQWxz.js" props="{}" ssr client="load" opts='{"name":"Inventory","value":true}' await-children
-				><section class="h-auto relative z-10 font-poppins text-white flex justify-center mx-auto w-2/3 pt-10">
-					<div class="flex flex-col justify-around w-full gap-4">
-						<div class="flex justify-between w-full">
-							<select class="rounded-full w-1/4 border-2 border-slate-500/20 text-center font-semibold bg-white/10">
-								<option value="All" class="text-white bg-[#121C28]">All</option></select
-							><span class="absolute left-[44%] font-semibold">Total Images: <span class="text-green-400"></span></span>
-							<div class="flex w-40 rounded-full border-2 border-slate-500/20 bg-white/20 overflow-hidden justify-center gap-2 items-center">
-								<div class="-ml-1">
-									<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-search">
-										<path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-										<path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0"></path>
-										<path d="M21 21l-6 -6"></path>
-									</svg>
-								</div>
-								<input type="text" class="w-3/4 text-center font-semibold bg-transparent focus:outline-none" placeholder="Search" value="" />
-							</div>
-						</div>
-						<div class="bg-[#192533]/60 w-full h-auto rounded-xl grid grid-cols-6 gap-4 py-4 px-10 backdrop-blur-xl"></div>
-					</div>
-				</section>
-				<!--astro:end--></astro-island
-			>
-		</main>
+				}
+
+				async downloadSingleImage(imageUrl, imageName) {
+					try {
+						const response = await fetch(imageUrl);
+						const blob = await response.blob();
+						const url = window.URL.createObjectURL(blob);
+						
+						const link = document.createElement('a');
+						link.href = url;
+						
+						// Get file extension from URL or default to .png
+						const extension = imageUrl.split('.').pop().toLowerCase();
+						const validExtensions = ['png', 'jpg', 'jpeg', 'gif', 'webp', 'svg'];
+						const fileExtension = validExtensions.includes(extension) ? extension : 'png';
+						
+						link.download = `${imageName.toLowerCase().replace(/[^a-z0-9]/g, '_')}.${fileExtension}`;
+						document.body.appendChild(link);
+						link.click();
+						document.body.removeChild(link);
+						window.URL.revokeObjectURL(url);
+					} catch (error) {
+						console.error(`Error downloading ${imageName}:`, error);
+						throw error;
+					}
+				}
+
+				formatCategoryName(category) {
+					return category
+						.split(/[-_\s]+/)
+						.map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+						.join(" ");
+				}
+
+				async copyToClipboard(text) {
+					try {
+						await navigator.clipboard.writeText(text);
+					} catch (err) {
+						// Fallback para navegadores más antiguos
+						const textArea = document.createElement("textarea");
+						textArea.value = text;
+						document.body.appendChild(textArea);
+						textArea.select();
+						document.execCommand("copy");
+						document.body.removeChild(textArea);
+					}
+				}
+
+				showToast(message) {
+					// Crear toast si no existe
+					let toast = document.getElementById("toast");
+					if (!toast) {
+						toast = document.createElement("div");
+						toast.id = "toast";
+						toast.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background-color: #4ade80;
+                        color: #1f2937;
+                        padding: 12px 20px;
+                        border-radius: 8px;
+                        font-weight: 600;
+                        z-index: 1000;
+                        transform: translateX(120%);
+                        transition: transform 0.3s ease;
+                    `;
+						document.body.appendChild(toast);
+					}
+
+					toast.textContent = message;
+					toast.style.transform = "translateX(0)";
+
+					setTimeout(() => {
+						toast.style.transform = "translateX(120%)";
+					}, 2000);
+				}
+
+				showError(message) {
+					this.itemsGrid.innerHTML = `
+                    <div class="no-results">
+                        <span style="color: #ef4444;">❌ ${message}</span>
+                    </div>
+                `;
+				}
+			}
+
+			// Inicializar la galería cuando se cargue la página
+			document.addEventListener("DOMContentLoaded", () => {
+				new ItemsGallery();
+			});
+		</script>
 	</body>
 </html>
