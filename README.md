@@ -43,3 +43,5 @@ The images used in this project come from multiple sources and are under differe
 - If you find any image with unclear licensing, please let us know so we can take appropriate action.
 
 For more details about the licenses, please refer to the original repositories.
+
+This project is licensed under the terms of the LICENSE file included in this repository. Mandatory attribution to BIT is required for any use.
